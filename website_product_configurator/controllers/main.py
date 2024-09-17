@@ -53,7 +53,9 @@ class ProductConfigWebsiteSale(WebsiteSale):
     def product(self, product, category="", search="", **kwargs):
         # Use parent workflow for regular products
         if not product.config_ok or not product.attribute_line_ids:
-            return super(ProductConfigWebsiteSale, self).product(product, category, search, **kwargs)
+            return super(ProductConfigWebsiteSale, self).product(
+                product, category, search, **kwargs
+            )
         try:
             cfg_session = self.get_config_session(product_tmpl_id=product)
         except Exception:
@@ -120,7 +122,8 @@ class ProductConfigWebsiteSale(WebsiteSale):
         cfg_session = cfg_session.sudo()
         config_image_ids = False
         if cfg_session.value_ids:
-            config_image_ids = cfg_session._get_config_image(                cfg_session.value_ids.ids, cfg_session._get_custom_vals_dict()
+            config_image_ids = cfg_session._get_config_image(
+                cfg_session.value_ids.ids, cfg_session._get_custom_vals_dict()
             )
         if not config_image_ids:
             config_image_ids = cfg_session.product_tmpl_id
@@ -178,8 +181,10 @@ class ProductConfigWebsiteSale(WebsiteSale):
         values.update(config_vals)
         reconfiguring_order_line_id = kwargs.get("reconfiguring_order_line_id")
         if reconfiguring_order_line_id:
-            reconfiguring_order_line = request.env["sale.order.line"].browse(
-                int(reconfiguring_order_line_id)
+            reconfiguring_order_line = (
+                request.env["sale.order.line"]
+                .browse(int(reconfiguring_order_line_id))
+                .sudo()
             )
             order = request.website.sale_get_order()
             if reconfiguring_order_line.exists() in order.order_line:
@@ -489,10 +494,11 @@ class ProductConfigWebsiteSale(WebsiteSale):
                     return {"error": result.get("error")}
 
             if not (config_session_id.value_ids or config_session_id.custom_value_ids):
-                return {"error": (
-                    "You must select at least one "
-                    "attribute in order to configure a product"
-                )
+                return {
+                    "error": (
+                        "You must select at least one "
+                        "attribute in order to configure a product"
+                    )
                 }
             # create variant
             config_session_id.sudo().action_confirm()
@@ -571,8 +577,10 @@ class ProductConfigWebsiteSale(WebsiteSale):
         }
         reconfiguring_order_line_id = post.get("reconfiguring_order_line_id")
         if reconfiguring_order_line_id:
-            reconfiguring_order_line = request.env["sale.order.line"].browse(
-                int(reconfiguring_order_line_id)
+            reconfiguring_order_line = (
+                request.env["sale.order.line"]
+                .browse(int(reconfiguring_order_line_id))
+                .sudo()
             )
             order = request.website.sale_get_order()
             if reconfiguring_order_line.exists() in order.order_line:
@@ -620,7 +628,8 @@ class ProductConfigWebsiteSale(WebsiteSale):
     def render_error(self, error=None, message="", **post):
         error = error and True or False
         if not message:
-            message = ("Due to technical issues the requested operation is not"
+            message = (
+                "Due to technical issues the requested operation is not"
                 "available. Please try again later."
             )
         vals = {"message": message, "error": error}
@@ -628,14 +637,13 @@ class ProductConfigWebsiteSale(WebsiteSale):
 
     @http.route()
     def cart_update_json(self, product_id, **kwargs):
-        print("cart_update_json")
         reconfiguring_order_line_id = kwargs.get("reconfiguring_order_line_id")
         line_id = kwargs.get("line_id")
-        print("reconfiguring_order_line_id", reconfiguring_order_line_id)
-        print("line_id", line_id)
         if reconfiguring_order_line_id and not line_id:
-            reconfiguring_order_line = request.env["sale.order.line"].browse(
-                int(reconfiguring_order_line_id)
+            reconfiguring_order_line = (
+                request.env["sale.order.line"]
+                .browse(int(reconfiguring_order_line_id))
+                .sudo()
             )
             order = request.website.sale_get_order()
             if reconfiguring_order_line.exists() in order.order_line:
@@ -658,15 +666,18 @@ class ProductConfigWebsiteSale(WebsiteSale):
             sale_order = request.website.sale_get_order(force_create=True)
         product_custom_attribute_values = None
         if kw.get("product_custom_attribute_values"):
-            product_custom_attribute_values = json.loads(kw.get("product_custom_attribute_values")
+            product_custom_attribute_values = json.loads(
+                kw.get("product_custom_attribute_values")
             )
 
         no_variant_attribute_values = None
         if kw.get("no_variant_attribute_values"):
-            no_variant_attribute_values = json.loads(kw.get("no_variant_attribute_values")
+            no_variant_attribute_values = json.loads(
+                kw.get("no_variant_attribute_values")
             )
 
-        sale_order._cart_update(            product_id=int(product_id),
+        sale_order._cart_update(
+            product_id=int(product_id),
             add_qty=add_qty,
             set_qty=set_qty,
             product_custom_attribute_values=product_custom_attribute_values,
@@ -678,4 +689,3 @@ class ProductConfigWebsiteSale(WebsiteSale):
         if kw.get("express"):
             return request.redirect("/shop/checkout?express=1")
         return request.redirect("/shop/cart")
-
