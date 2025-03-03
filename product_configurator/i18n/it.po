@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-04-03 09:36+0000\n"
-"Last-Translator: Simone Rubino <simone.rubino@aion-tech.it>\n"
+"PO-Revision-Date: 2024-10-26 16:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: product_configurator
 #. odoo-python
@@ -163,6 +163,11 @@ msgid "Allow selection of multiple values for this attribute?"
 msgstr "Consentire selezione di valori multipli per questo attributo?"
 
 #. module: product_configurator
+#: model:ir.model.fields,field_description:product_configurator.field_product_config_line__attr_line_val_ids
+msgid "Allowed Attribute Values"
+msgstr "Valori attributo consentiti"
+
+#. module: product_configurator
 #. odoo-python
 #: code:addons/product_configurator/models/product_config.py:0
 #, python-format
@@ -217,11 +222,6 @@ msgid "Attribute Line Val"
 msgstr "Valore riga attributo"
 
 #. module: product_configurator
-#: model:ir.model.fields,field_description:product_configurator.field_product_config_line__attr_line_val_ids
-msgid "Attribute Line Values"
-msgstr "Valori riga attributo"
-
-#. module: product_configurator
 #: model:ir.model.fields,field_description:product_configurator.field_product_config_step_line__attribute_line_ids
 msgid "Attribute Lines"
 msgstr "Righe attributo"
@@ -248,28 +248,6 @@ msgstr "Valori attributo"
 #: model:ir.model.fields,field_description:product_configurator.field_product_template_attribute_value__weight_extra
 msgid "Attribute Weight Extra"
 msgstr "Extra peso attributo"
-
-#. module: product_configurator
-#. odoo-python
-#: code:addons/product_configurator/models/product_config.py:0
-#, python-format
-msgid ""
-"Attribute custom type is binary, attachments are the only accepted values "
-"with this custom field type"
-msgstr ""
-"Il tipo attributo personalizzato è binario, sono consentiti solo allegati "
-"con questo tipo di campo personalizzato"
-
-#. module: product_configurator
-#. odoo-python
-#: code:addons/product_configurator/models/product_config.py:0
-#, python-format
-msgid ""
-"Attribute custom type must be 'binary' for saving attachments to custom "
-"value"
-msgstr ""
-"Il tipo attributo personalizzato deve essere 'binary' per salvare allegati "
-"nel valore personalizzato"
 
 #. module: product_configurator
 #: model:ir.model.fields,help:product_configurator.field_product_attribute_value__image
@@ -339,17 +317,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_configurator.field_product_template__config_ok
 msgid "Can be Configured"
 msgstr "Può essere configurato"
-
-#. module: product_configurator
-#. odoo-python
-#: code:addons/product_configurator/models/product_config.py:0
-#, python-format
-msgid ""
-"Cannot conduct search on an empty config session without product_tmpl_id "
-"kwarg"
-msgstr ""
-"Non si può eseguire una ricerca in una sessione con configurazione vuota "
-"senza kwarg product_tmpl_id"
 
 #. module: product_configurator
 #. odoo-python
@@ -495,13 +462,6 @@ msgstr "ID passo configurazione"
 #: model_terms:ir.ui.view,arch_db:product_configurator.product_template_only_form_view_inherited
 msgid "Configuration Steps"
 msgstr "Passi configurazione"
-
-#. module: product_configurator
-#. odoo-python
-#: code:addons/product_configurator/models/product_config.py:0
-#, python-format
-msgid "Configuration cannot have the same value inserted twice"
-msgstr "La configurazione non può avere lo stesso valore inserito due volte"
 
 #. module: product_configurator
 #: model:ir.ui.menu,name:product_configurator.menu_product_configurable
@@ -658,7 +618,6 @@ msgstr ""
 #. module: product_configurator
 #. odoo-python
 #: code:addons/product_configurator/models/product.py:0
-#: code:addons/product_configurator/models/product_config.py:0
 #, python-format
 msgid "Default values provided generate an invalid configuration"
 msgstr "I valori predefiniti forniti generano una configurazione non valida"
@@ -770,6 +729,17 @@ msgstr ""
 "corrette"
 
 #. module: product_configurator
+#: model:ir.model.fields,help:product_configurator.field_product_config_line__attr_line_val_ids
+msgid ""
+"For normal attributes the values configured for the product can be "
+"selected.\n"
+"For custom attributes the 'Custom' value can also be selected."
+msgstr ""
+"Per gli attributi normali possono essere selezionati i valori configurati.\n"
+"Per i valori personalizzati deve essere selezionato il valore "
+"'Personalizzato'."
+
+#. module: product_configurator
 #: model:product.attribute,name:product_configurator.product_attribute_fuel
 msgid "Fuel"
 msgstr "Carburante"
@@ -842,14 +812,6 @@ msgstr "Integer"
 #: model:product.config.step,name:product_configurator.config_step_interior
 msgid "Interior"
 msgstr "Interno"
-
-#. module: product_configurator
-#. odoo-python
-#: code:addons/product_configurator/models/product_config.py:0
-#: code:addons/product_configurator/models/product_config.py:0
-#, python-format
-msgid "Invalid Configuration"
-msgstr "Configurazione non valida"
 
 #. module: product_configurator
 #: model:ir.model.fields,field_description:product_configurator.field_product_product__config_preset_ok
@@ -1018,13 +980,6 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: product_configurator
-#. odoo-python
-#: code:addons/product_configurator/models/product_config.py:0
-#, python-format
-msgid "New"
-msgstr "Nuova"
-
-#. module: product_configurator
 #: model_terms:ir.ui.view,arch_db:product_configurator.product_configurator_form
 msgid "Next"
 msgstr "Successiva"
@@ -1034,8 +989,8 @@ msgstr "Successiva"
 #: code:addons/product_configurator/models/product_attribute.py:0
 #, python-format
 msgid ""
-"On the product %(product)s you cannot associate the value %(value)s with the"
-" attribute %(attr)s because they do not match."
+"On the product %(product)s you cannot associate the value %(value)s with the "
+"attribute %(attr)s because they do not match."
 msgstr ""
 "Nel prodotto %(product)s non si può associare il valore %(value)s per "
 "l'attributo %(attr)s perché non corrispondono."
@@ -1177,13 +1132,6 @@ msgid "Product configuration Wizard"
 msgstr "Procedura guidata configurazione prodotto"
 
 #. module: product_configurator
-#. odoo-python
-#: code:addons/product_configurator/models/product_config.py:0
-#, python-format
-msgid "Product created via configuration wizard"
-msgstr "Prodotto creato attraverso la procedura guidata configurazione"
-
-#. module: product_configurator
 #: model_terms:ir.ui.view,arch_db:product_configurator.product_form_view_custom_vals_inherit
 msgid "Reconfigure Product"
 msgstr "Riconfigura prodotto"
@@ -1198,13 +1146,6 @@ msgstr "Rossa"
 #: model:ir.model.fields,field_description:product_configurator.field_product_template_attribute_line__required
 msgid "Required"
 msgstr "Richiesto"
-
-#. module: product_configurator
-#. odoo-python
-#: code:addons/product_configurator/models/product_config.py:0
-#, python-format
-msgid "Required attribute '%s' is empty"
-msgstr "L'attributo richiesto '%s' è vuoto"
 
 #. module: product_configurator
 #: model_terms:ir.ui.view,arch_db:product_configurator.product_configurator_form
@@ -1222,7 +1163,8 @@ msgstr "Restrizioni"
 #: code:addons/product_configurator/models/product.py:0
 #, python-format
 msgid ""
-"Restrictions added make the current default values generate an invalid configuration.                      \n"
+"Restrictions added make the current default values generate an invalid "
+"configuration.                      \n"
 "%s"
 msgstr ""
 "Le restrizioni aggiunte rendono i valori attuali predefiniti una "
@@ -1335,7 +1277,6 @@ msgstr "Pacchetto fumatore"
 
 #. module: product_configurator
 #. odoo-python
-#: code:addons/product_configurator/models/product.py:0
 #: code:addons/product_configurator/models/product.py:0
 #, python-format
 msgid ""
@@ -1571,10 +1512,54 @@ msgstr ""
 msgid "You cannot have a duplicate configuration for the same value"
 msgstr "Non si può avere una configurazione duplicata per lo stesso valore"
 
-#. module: product_configurator
-#. odoo-python
-#: code:addons/product_configurator/models/product_config.py:0
-#: code:addons/product_configurator/models/product_config.py:0
 #, python-format
-msgid "You must select at least one attribute in order to configure a product"
-msgstr "Bisogna selezionare almeno un attributo per confiugrare un prodotto"
+#~ msgid ""
+#~ "Attribute custom type is binary, attachments are the only accepted values "
+#~ "with this custom field type"
+#~ msgstr ""
+#~ "Il tipo attributo personalizzato è binario, sono consentiti solo allegati "
+#~ "con questo tipo di campo personalizzato"
+
+#, python-format
+#~ msgid ""
+#~ "Attribute custom type must be 'binary' for saving attachments to custom "
+#~ "value"
+#~ msgstr ""
+#~ "Il tipo attributo personalizzato deve essere 'binary' per salvare "
+#~ "allegati nel valore personalizzato"
+
+#, python-format
+#~ msgid ""
+#~ "Cannot conduct search on an empty config session without product_tmpl_id "
+#~ "kwarg"
+#~ msgstr ""
+#~ "Non si può eseguire una ricerca in una sessione con configurazione vuota "
+#~ "senza kwarg product_tmpl_id"
+
+#, python-format
+#~ msgid "Configuration cannot have the same value inserted twice"
+#~ msgstr "La configurazione non può avere lo stesso valore inserito due volte"
+
+#, python-format
+#~ msgid "Invalid Configuration"
+#~ msgstr "Configurazione non valida"
+
+#, python-format
+#~ msgid "New"
+#~ msgstr "Nuova"
+
+#, python-format
+#~ msgid "Product created via configuration wizard"
+#~ msgstr "Prodotto creato attraverso la procedura guidata configurazione"
+
+#, python-format
+#~ msgid "Required attribute '%s' is empty"
+#~ msgstr "L'attributo richiesto '%s' è vuoto"
+
+#, python-format
+#~ msgid ""
+#~ "You must select at least one attribute in order to configure a product"
+#~ msgstr "Bisogna selezionare almeno un attributo per confiugrare un prodotto"
+
+#~ msgid "Attribute Line Values"
+#~ msgstr "Valori riga attributo"
