@@ -63,16 +63,28 @@ class SaleOrderLine(models.Model):
         result = None
         for line in self:
             if line.config_session_id:
-                account_tax_obj = self.env["account.tax"]
-                line.price_unit = account_tax_obj._fix_tax_included_price_company(
-                    line.config_session_id.price,
-                    line.product_id.taxes_id,
-                    line.tax_id,
-                    line.company_id,
-                )
+                line.price_unit = self._get_price_unit_configurator(line)
             else:
                 result = super(SaleOrderLine, line)._compute_price_unit()
         return result
+
+    def _get_price_unit_configurator(self, line):
+        config_price = line.config_session_id.price
+        account_tax_obj = self.env["account.tax"]
+        if (
+            line.order_id.pricelist_id.discount_policy == "with_discount"
+            and line.product_id
+        ):
+            line = line.with_context(config_price=config_price)
+            price = line._get_pricelist_price()
+        else:
+            price = config_price
+        return account_tax_obj._fix_tax_included_price_company(
+            price,
+            line.product_id.taxes_id,
+            line.tax_id,
+            line.company_id,
+        )
 
     def _get_sale_order_line_multiline_description_variants(self):
         name = ""
