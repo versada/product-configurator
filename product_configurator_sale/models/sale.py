@@ -56,7 +56,6 @@ class SaleOrderLine(models.Model):
 
     @api.depends(
         "config_session_id",
-        "tax_id",
         "company_id",
     )
     def _compute_price_unit(self):
